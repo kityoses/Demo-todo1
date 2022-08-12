@@ -1,0 +1,5 @@
+Para deployar la app:
+ - Run de la clase DemoApplication.java para la creacion de esquema de BDD.
+ - Run del test DemoInitBDTest.java para la creacion de usuarios de prueba(empleados).
+Para la creacion de productos:
+ - Run del test InsertProductTest.java

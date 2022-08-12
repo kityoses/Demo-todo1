@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<style>
+a:link, a:visited {
+  background-color: rgb(153, 171, 225);
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #008CBA;
+}
+</style>
+<div style="text-align: center;">
+	<h4 th:inline="text">¡ Welcome to HulkStore !</h4>
+	<div style="text-align: center;">
+	    	<a th:href="@{/showCart}">Buy</a>
+	        <a th:href="@{/getListProducts}">Products</a>
+	        <a th:href="@{/logout}">LogOut</a>
+	</div>
+</div>
+</body>
+</html>

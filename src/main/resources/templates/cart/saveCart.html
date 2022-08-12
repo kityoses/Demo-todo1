@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div style="width: 20%; float: left;">
+		<h3 th:inline="text">¡ Welcome to HulkStore !</h3>	
+		<div>
+			<ul>
+			<li type="circle"><a th:href="@{/showCart}">Buy</a></li>
+	        <li type="circle"><a th:href="@{/getListProducts}">Products</a></li>
+	        <li type="circle"><a th:href="@{/logout}">LogOut</a></li>
+			</ul>
+		</div>
+	</div>
+	<style>
+	table, th, td {
+  	border: 1px solid #008CBA;
+	}
+	.button {
+	  	background-color: #008CBA;
+	    border: none;
+	    color: white;
+	    padding: 13px 24px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 12px;
+	    margin: 3px 2px;
+	    cursor: pointer;
+	}
+	</style>
+  	<div style="width: 80%; float: right;">
+	    <form action="#" th:action="@{/addToCart}" th:object="${selectedProductForm}" method='POST' class="form-horizontal">
+            <h3>Cart</h3>
+            <div>
+	            <span>Product:</span>
+	            <select th:field="*{id}" class="form-control">
+	                 <option th:each="product : ${products}" th:value="${product.id}" th:utext="${product.name}"/>
+	            </select>
+            </div>
+            <div>
+	            <span>Quantity:</span>
+	            <input type="number" th:field="*{quantity}" placeholder="Quantity" class="form-control"/>
+	            <label th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="validation-message"></label>
+            </div>
+            <div style="margin-top: 20px;">
+	            <button type="submit" class="button">Add to Cart</button>
+            </div>
+	    </form>
+	    
+		<h3>Products</h3> 
+		<table>
+		    <thead>
+			    <tr>
+			        <th>Id Product</th>
+			        <th>Name</th>
+			        <th>Quantity</th>
+			        <th>Category</th>
+			        <th>Price</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr th:each="productPurchase : ${productPurchases}">
+			        <td th:text="${productPurchase.product.id}"></td>
+			        <td th:text="${productPurchase.name}"></td>
+			        <td th:text="${productPurchase.quantity}"></td>
+			        <td th:text="${productPurchase.category}"></td>
+			        <td th:text="${productPurchase.subTotal}"></td>
+	                <td>
+	                    <button type="button" class="button"><a th:href="@{/deleteProductPurchase(idProduct=${productPurchase.product.id})}" style="text-decoration: none;">Delete</a></button>
+	                </td>
+			    </tr>
+		    </tbody>
+		</table>
+		
+        <div style="margin-top: 20px;">
+           	<button type="button"class="button" ><a th:href="@{/saveCart}" style="text-decoration: none;">Checkout</a></button>
+           	<button type="button" class="button"><a th:href="@{/showCart}" style="text-decoration: none;">Clear</a></button>
+        </div>
+  	</div>   
+</body>
+</html>
